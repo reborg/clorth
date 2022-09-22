@@ -1,6 +1,7 @@
-(ns clorth.core-test
+(ns clorth.stdblib-test
   (:require [clojure.test :refer [deftest is testing]]
-            [clorth.word :refer [env word]]))
+            [clorth.word :refer [env word]]
+            [clorth.stdlib]))
 
 (defn e [expr]
   (->> expr (word (env)) :stack))
