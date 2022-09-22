@@ -1,0 +1,20 @@
+(ns user
+  (:require [clorth.word :as w :refer [word]]
+            [clojure.main :as main]))
+
+(def env (atom (w/env)))
+
+(def repl-options
+  [:prompt #(printf "> ")
+   :read (fn [request-prompt request-exit]
+           (or ({:line-start request-prompt
+                 :stream-end request-exit}
+                (main/skip-whitespace *in*))
+               (read-line)))
+   :eval (fn [s]
+           (let [words (read-string (str "[" (w/clojurify-string s) "]"))]
+             (swap! env word words)
+             (:stack @env)))])
+
+(def clorth (delay (apply main/repl repl-options)))
+(println "~~~~ To start the interpreter type @clorth, to stop use CTRL+D ~~~~")
