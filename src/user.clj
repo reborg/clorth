@@ -17,4 +17,4 @@
              (:stack @env)))])
 
 (def clorth (delay (apply main/repl repl-options)))
-(println "~~~~ To start the interpreter type @clorth, to stop use CTRL+D ~~~~")
+(println "~~~~ To start the interpreter type @clorth to stop use CTRL+D ~~~~")

@@ -1,12 +1,12 @@
 (ns clorth.stdlib
-  (:require [clorth.word :refer [push word popn ensure!]]))
+  (:require [clorth.word :refer [pop1 push word popn ensure!]]
+            [clorth.math]))
 
 (defmethod word 'drop
   [env args]
   (word
-   (if (pos? (count (:stack env)))
-     (update env :stack popn 1)
-     env)
+   (cond-> env
+     (pos? (count (:stack env))) pop1)
    (rest args)))
 
 (defmethod word \:
