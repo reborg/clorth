@@ -1,5 +1,7 @@
 (ns user
   (:require [clorth.word :as w :refer [word]]
+            [clorth.stdlib]
+            [clorth.math]
             [clojure.main :as main]))
 
 (def env (atom (w/env)))
@@ -12,7 +14,7 @@
                 (main/skip-whitespace *in*))
                (read-line)))
    :eval (fn [s]
-           (let [words (read-string (str "[" (w/clojurify-string s) "]"))]
+           (let [words (read-string (str "[" (w/handle-specials s) "]"))]
              (swap! env word words)
              (:stack @env)))])
 
