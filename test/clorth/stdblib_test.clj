@@ -32,6 +32,10 @@
   (is (= "***" (with-out-str (e '[\: star 42 emit \; star star star]))))
   (is (= "hello" (with-out-str (e '[\. "hello"]))))
   (is (= "hi" (with-out-str (e '[hi \. 1]))))
+  (is (= "123" (with-out-str (e '[1 \. 2 \. 3 \.]))))
+  (is (= [] (let [state (atom nil)]
+                   (with-out-str (reset! state (e '[1 \. 2 \. 3 \.])))
+                   @state)))
   (is (= "hello" (with-out-str (e '[\: greet \. "hello" \; greet]))))
   )
 

@@ -47,8 +47,7 @@
   [env [_ & args]]
   (if (string? (first args))
     (do (print (first args)) (word env (rest args)))
-    (do (print (peek (:stack env))) (word env args)))
-  )
+    (do (print (peek (:stack env))) (word (pop1 env) args))))
 
 (defmethod word 'spaces
   [{:keys [stack] :as env} [_ & args]]
