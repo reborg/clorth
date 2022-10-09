@@ -11,9 +11,10 @@
     (is (= [1] (:stack (word (env) [1])))))
   (testing "nothing"
     (is (= [] (e []))))
-  (testing "drop"
+  (testing "stack ops"
     (is (= '[1 a b] (e '[1 2 3 drop drop a b])))
-    (is (= [1 2] (e '[drop drop 1 2]))))
+    (is (= [] (e '[1 2 drop drop])))
+    (is (= [1 1] (e '[1 dup]))))
   (testing "new words"
     (is (= '[1 a b] (e '[\: triple drop drop drop \; 1 2 3 4 triple a b]))))
   (testing "some standard words"

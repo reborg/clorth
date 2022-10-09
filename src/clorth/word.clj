@@ -11,7 +11,7 @@
    "~" "\\~"
    "." "\\."})
 
-(defn clojurify-string [s]
+(defn handle-specials [s]
   (reduce (fn [s [s1 s2]]
             (string/replace s s1 s2))
           s reader-specials))
@@ -52,8 +52,9 @@
 (defn popn
   "Pops n items from v after checking there are enought items to pop."
   [v n]
-  (ensure! #(>= (- (count v) %) 0) n (format "[!] cannot pop %s from v size %s." n (count v)))
-  (subvec v 0 (- (count v) n)))
+  (let [msg (format "(!) stack underflow: attempt at pop %s but only %s available." n (count v))]
+    (ensure! #(>= (- (count v) %) 0) n msg)
+    (subvec v 0 (- (count v) n))))
 
 (defn pop1 [env] (update env :stack popn 1))
 (defn pop2 [env] (update env :stack popn 2))
@@ -63,10 +64,11 @@
   "Peek n items from v without popping them. Throws
   exception if there are not enough elements to peek."
   [v n]
-  (ensure! #(>= (- (count v) %) 0) n (format "[!] cannot peek %s from v of size %s." n (count v)))
+  (let [msg (format "(!) stack underflow: attempt at pop %s but only %s available." n (count v))]
+    (ensure! #(>= (- (count v) %) 0) n msg))
   (take n (rseq v)))
 
-(defn peek1 [env] (peekn (:stack env) 1))
+(defn peek1 [env] (first (peekn (:stack env) 1)))
 (defn peek2 [env] (peekn (:stack env) 2))
 (defn peek3 [env] (peekn (:stack env) 3))
 
@@ -81,7 +83,8 @@
     :userwords userwords}))
 
 (defmulti word
-  (fn [_ args] (cond-> args (coll? args) first)))
+  (fn [_ args]
+    (cond-> args (coll? args) first)))
 
 (defmethod word :default
   [{userwords :userwords :as env} [arg :as args]]

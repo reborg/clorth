@@ -15,7 +15,10 @@
                (read-line)))
    :eval (fn [s]
            (let [words (read-string (str "[" (w/handle-specials s) "]"))]
-             (swap! env word words)
+             (try
+               (swap! env word words)
+               (catch Exception e
+                 (println (.getMessage e))))
              (:stack @env)))])
 
 (def clorth (delay (apply main/repl repl-options)))

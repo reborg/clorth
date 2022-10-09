@@ -1,13 +1,17 @@
 (ns clorth.stdlib
-  (:require [clorth.word :refer [pop1 push word popn ensure!]]
+  (:require [clorth.word :refer [pop1 peek1 push word popn ensure!]]
             [clorth.math]))
 
 (defmethod word 'drop
   [env args]
-  (word
-   (cond-> env
-     (pos? (count (:stack env))) pop1)
-   (rest args)))
+  (word (pop1 env) (rest args)))
+
+(defmethod word 'dup
+  [env args]
+  (let [itm (peek1 env)]
+    (word
+     (update env :stack push itm)
+     (rest args))))
 
 (defmethod word \:
   [env [_ defword & args]]
