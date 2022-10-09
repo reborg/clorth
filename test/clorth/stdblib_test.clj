@@ -30,12 +30,15 @@
   (is (thrown? RuntimeException (e '[h spaces])))
   (is (= "**" (with-out-str (e '[42 emit 42 emit]))))
   (is (= "***" (with-out-str (e '[\: star 42 emit \; star star star]))))
+  (is (= [] (let [state (atom nil)]
+              (with-out-str (reset! state (e '[42 emit 42 emit])))
+              @state)))
   (is (= "hello" (with-out-str (e '[\. "hello"]))))
   (is (= "hi" (with-out-str (e '[hi \. 1]))))
   (is (= "123" (with-out-str (e '[1 \. 2 \. 3 \.]))))
   (is (= [] (let [state (atom nil)]
-                   (with-out-str (reset! state (e '[1 \. 2 \. 3 \.])))
-                   @state)))
+              (with-out-str (reset! state (e '[1 \. 2 \. 3 \.])))
+              @state)))
   (is (= "hello" (with-out-str (e '[\: greet \. "hello" \; greet]))))
   )
 
