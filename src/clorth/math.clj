@@ -15,3 +15,5 @@
 (defmethod word '/ [env [op & args]] (word (arity2 env op) args))
 (defmethod word '= [env [op & args]] (word (arity2 env op) args))
 (defmethod word '== [env [op & args]] (word (arity2 env op) args))
+(defmethod word '< [env [op & args]] (word (arity2 env op) args))
+(defmethod word '> [env [op & args]] (word (arity2 env op) args))
