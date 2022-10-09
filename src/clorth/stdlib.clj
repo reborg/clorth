@@ -22,6 +22,13 @@
          (update :stack push itm1 itm2))
      (rest args))))
 
+(defmethod word 'over
+  [env args]
+  (let [[_ itm2] (peek2 env)]
+    (word
+     (update env :stack push itm2)
+     (rest args))))
+
 (defmethod word \:
   [env [_ defword & args]]
   (let [[body [_ & cont]] (split-with (complement #{\;}) args)]

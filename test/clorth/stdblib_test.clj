@@ -18,6 +18,7 @@
   (is (= [1 1] (e '[1 dup])))
   (is (= [2] (e '[5 10 swap /])))
   (is (thrown? RuntimeException (e '[1 swap])))
+  (is (= [1 2 3 2] (e '[1 2 3 over])))
   )
 
 (deftest creating-new-words-test
