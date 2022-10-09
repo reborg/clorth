@@ -55,7 +55,7 @@
 (defn popn
   "Pops n items from v after checking there are enought items to pop."
   [v n]
-  (let [msg (format "stack underflow: attempt at pop %s but only %s available." n (count v))]
+  (let [msg (format "stack underflow: attempt to pop %s but only %s available." n (count v))]
     (ensure! #(>= (- (count v) %) 0) n msg)
     (subvec v 0 (- (count v) n))))
 
@@ -67,7 +67,7 @@
   "Peek n items from v without popping them. Throws
   exception if there are not enough elements to peek."
   [v n]
-  (let [msg (format "stack underflow: attempt at pop %s but only %s available." n (count v))]
+  (let [msg (format "stack underflow: attempt to peek %s but only %s available." n (count v))]
     (ensure! #(>= (- (count v) %) 0) n msg))
   (take n (rseq v)))
 
