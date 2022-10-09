@@ -7,7 +7,7 @@
         res (op' b a)]
     (-> env
         pop2
-        (update :stack push (cond-> res (boolean? res) (if 1 0))))))
+        (update :stack push (cond-> res (boolean? res) (if -1 0))))))
 
 (defmethod word '+ [env [op & args]] (word (arity2 env op) args))
 (defmethod word '* [env [op & args]] (word (arity2 env op) args))
