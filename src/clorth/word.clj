@@ -13,13 +13,11 @@
    ".\" " "\\. \"" ; dot-doublequote
    #"^\.$" (Matcher/quoteReplacement "\\.")
    " . " " \\. "
+   " ." " \\."
    })
 
 (defn handle-specials [s]
-  (reduce (fn [s [s1 s2]]
-            (println (format " @@@ s before replace is '%s', got s1 '%s' and s2 '%s' after replace: '%s'" s s1 s2 (string/replace s s1 s2)))
-            (string/replace s s1 s2))
-          s reader-specials))
+  (reduce (fn [s [s1 s2]] (string/replace s s1 s2)) s reader-specials))
 
 (defn ezthrow
   "Throw a Runtime Exception with msg where the trace contains
@@ -51,7 +49,7 @@
   ([arg msg] (ensure! identity arg msg))
   ([pred arg msg]
    (when-not (and arg (pred arg))
-     (ezthrow (format (str "(!) " msg) arg) #"^clorth"))
+     (ezthrow (format (str "(!Error) " msg) arg) #"^clorth"))
    arg))
 
 (defn popn

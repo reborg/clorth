@@ -23,7 +23,9 @@
   )
 
 (deftest creating-new-words-test
-  (is (= '[1 a b] (e '[\: triple drop drop drop \; 1 2 3 4 triple a b]))))
+  (is (= '[1 a b] (e '[\: triple drop drop drop \; 1 2 3 4 triple a b])))
+  (is (thrown? RuntimeException (e '[\: missing-end 1 2 3])))
+  )
 
 (deftest other-stdlib-test
   (is (= "     " (with-out-str (e '[5 spaces]))))

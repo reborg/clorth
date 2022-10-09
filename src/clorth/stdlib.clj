@@ -40,6 +40,7 @@
 
 (defmethod word \:
   [env [_ defword & args]]
+  (ensure! (some #{\;} args) (format "missing ';' in word definition"))
   (let [[body [_ & cont]] (split-with (complement #{\;}) args)]
     (word (update env :userwords assoc defword body) cont)))
 
