@@ -15,7 +15,10 @@
 (deftest stack-ops-test
   (is (= '[1 a b] (e '[1 2 3 drop drop a b])))
   (is (= [] (e '[1 2 drop drop])))
-  (is (= [1 1] (e '[1 dup]))))
+  (is (= [1 1] (e '[1 dup])))
+  (is (= [2] (e '[5 10 swap /])))
+  (is (thrown? RuntimeException (e '[1 swap])))
+  )
 
 (deftest creating-new-words-test
   (is (= '[1 a b] (e '[\: triple drop drop drop \; 1 2 3 4 triple a b]))))
