@@ -1,23 +1,8 @@
 (ns clorth.word
   "Common defs and functions for word definitions."
-  (:require [clojure.string :as string])
-  (:import [java.lang StackTraceElement]
-           [java.util.regex Matcher]))
+  (:import [java.lang StackTraceElement]))
 
 (def push conj)
-
-(def reader-specials
-  {":" "\\:"
-   ";" "\\;"
-   "~" "\\~"
-   ".\" " "\\. \"" ; dot-doublequote
-   #"^\.$" (Matcher/quoteReplacement "\\.")
-   " . " " \\. "
-   " ." " \\."
-   })
-
-(defn handle-specials [s]
-  (reduce (fn [s [s1 s2]] (string/replace s s1 s2)) s reader-specials))
 
 (defn ezthrow
   "Throw a Runtime Exception with msg where the trace contains

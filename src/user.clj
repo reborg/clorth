@@ -1,5 +1,6 @@
 (ns user
   (:require [clorth.word :as w :refer [word]]
+            [clorth.reader :as r]
             [clorth.stdlib]
             [clorth.math]
             [clojure.main :as main]))
@@ -12,7 +13,7 @@
            (or ({:line-start request-prompt
                  :stream-end request-exit}
                 (main/skip-whitespace *in*))
-               (read-string (str "[" (w/handle-specials (read-line)) "]"))))
+               (r/read (read-line))))
    :eval (fn [words]
            (let [io (with-out-str
                      (try
