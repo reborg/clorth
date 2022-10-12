@@ -46,7 +46,3 @@ Clorth allows deep integration with Clojure. To call a function in the Clojure s
 1 2 3 _ inc .
 > 4
 ```
-
-### Difference from Forth
-
-* The Forth expression `1 . "2" 3` results in the following stack: [1 3] and "2" is printed on screen. In Forth proper, "2" should also appear as part of the stack and 1 should be printed instead. This is due to some restriction using the Clojure reader.
