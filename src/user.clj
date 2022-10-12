@@ -3,6 +3,7 @@
             [clorth.reader :as r]
             [clorth.stdlib]
             [clorth.math]
+            [clorth.core]
             [clojure.main :as main]))
 
 (def env (atom (w/env)))
