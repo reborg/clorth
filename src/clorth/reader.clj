@@ -12,6 +12,8 @@
    #"^\.$" (Matcher/quoteReplacement "\\.")
    " . " " \\. "
    " ." " \\."
+   #"1\+" "inc"
+   #"1\-" "dec"
    })
 
 (defn handle-specials [s]
