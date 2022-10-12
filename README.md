@@ -11,14 +11,14 @@ Start the REPL with `clj` and then type `@clorth` to start the Clorth interprete
 : star 42 emit;
 : stars 0 do star loop;
 : margin cr 30 spaces;
-: blip margin star;
-: bar margin 5 stars;
+: dot margin star;
+: line margin 5 stars;
 ```
 
 We just created a small "fun" language:
 
 ```forth
-bar blip bar blip blip cr
+line dot line dot dot cr
                              *****
                              *
                              *****
@@ -29,7 +29,7 @@ bar blip bar blip blip cr
 Let's create one last word so we can just type the single letter "F":
 
 ```forth
-: F bar blip bar blip blip cr
+: F line dot line dot dot cr
 F
                              *****
                              *

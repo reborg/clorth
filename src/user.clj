@@ -12,10 +12,9 @@
            (or ({:line-start request-prompt
                  :stream-end request-exit}
                 (main/skip-whitespace *in*))
-               (read-line)))
-   :eval (fn [s]
-           (let [words (read-string (str "[" (w/handle-specials s) "]"))
-                 io (with-out-str
+               (read-string (str "[" (w/handle-specials (read-line)) "]"))))
+   :eval (fn [words]
+           (let [io (with-out-str
                      (try
                       (swap! env word words)
                       (catch Exception e
