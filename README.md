@@ -1,6 +1,6 @@
 # Clorth
 
-A Forth implementation in Clojure. Currently implementing a limited subset of the standard library but already provided with interop to call into Clojure standard library. Clone the project, start the repl with `lein repl` and then type `@clorth` to start the interpreter.
+A Forth implementation in Clojure. Currently implementing a limited subset of the standard library but already provided with interop to call into Clojure standard library. Clone the project, start the repl with `lein repl` and then type `@clorth` to start the interpreter. An extended introduction is also available in these [slides](https://github.com/reborg/clorth-talk/blob/main/202210-clojurians-meetup/slides.pdf).
 
 ## Your first Forth program
 
