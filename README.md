@@ -4,7 +4,7 @@ A Forth implementation in Clojure.
 
 ## Your first Forth program
 
-Start the REPL with `clj` and then type `@clorth` to start the Clorth interpreter. The following is a small Forth program coming from the first chapter of [Starting Forth](). Please type every line at the prompt and hit the <return> key. The following are all words definitions and they start with ":" and end with ";":
+Start the REPL with `clj` and then type `@clorth` to start the Clorth interpreter. The following is a small Forth program coming from the first chapter of [Starting Forth](https://www.forth.com/wp-content/uploads/2018/01/Starting-FORTH.pdf). Please type every line at the prompt and hit the <return> key. The following are all words definitions and they start with ":" and end with ";":
 
 
 ```forth
